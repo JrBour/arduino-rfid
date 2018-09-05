@@ -3,16 +3,17 @@
 
 #define RST_PIN  8          // Configurable, see typical pin layout above
 #define SS_PIN   10         // Configurable, see typical pin layout above
-#define LED 4 // pin LED
+#define LED_GREEN 4 // pin LED
+#define LED_REF 5 // pin LED
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
 void setup() {
-  Serial.begin(9600);   // Initialize serial communications with the PC
   SPI.begin();      // Init SPI bus
+  Serial.begin(9600);   // Initialize serial communications with the PC
+  pinMode(LED, OUTPUT);
   mfrc522.PCD_Init();   // Init MFRC522
   mfrc522.PCD_DumpVersionToSerial();  // Show details of PCD - MFRC522 Card Reader details
-  pinMode(LED, OUTPUT);
   Serial.println(F("Veuillez scanner votre carte.")); // Function F(), allow to store string in flash memory instead of the RAM
 }
 
@@ -25,10 +26,14 @@ void checkCard() {
 
   if (mfrc522.uid.uidByte[0] == 0x90 && mfrc522.uid.uidByte[1] == 0xA1 && mfrc522.uid.uidByte[2] == 0xDD && mfrc522.uid.uidByte[3] == 0x2B) {
     Serial.println("Accés autorisé");
-    digitalWrite(LED, HIGH);
+    digitalWrite(LED_GREEN, HIGH);
+    delay(2000);
+    digitalWrite(LED_GREEN, LOW);
   } else {
     Serial.println("Accés refusé");
-    digitalWrite(LED, LOW);
+    digitalWrite(LED_RED, HIGH);
+    delay(2000);
+    digitalWrite(LED_RED, LOW);
   }
 }
 
