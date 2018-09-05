@@ -26,10 +26,9 @@ void checkCard() {
   if (mfrc522.uid.uidByte[0] == 0x90 && mfrc522.uid.uidByte[1] == 0xA1 && mfrc522.uid.uidByte[2] == 0xDD && mfrc522.uid.uidByte[3] == 0x2B) {
     Serial.println("Accés autorisé");
     digitalWrite(LED, HIGH);
-    delay(3000);
-    digitalWrite(LED, LOW);
   } else {
     Serial.println("Accés refusé");
+    digitalWrite(LED, LOW);
   }
 }
 

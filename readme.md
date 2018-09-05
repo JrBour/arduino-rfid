@@ -4,13 +4,11 @@
 
 **Materiel :**
 
-- Carte Arduino Uno
+- [Carte Arduino Uno](https://www.gotronic.fr/art-carte-arduino-uno-12420.htm)
 
-- Module RFID (RC-522)
+- [Module RFID (RC-522)](https://fr.shopping.rakuten.com/offer/buy/2802988128/cnyo-10-set-crfm-522-rc522-rfid-rf-ic-module-de-capteur-de-carte-a-envoyer-la-carte-s50-fudan-porte-cles.html?t=180112&gclid=CjwKCAjw_b3cBRByEiwAdG8WqlX7mG_J3dCFA2PvHSjEpXXqnvXjIu2XHSZ8sjN8Q-Lc9P-dGNbuDhoC3BYQAvD_BwE&bbaid=3559416029&sort=0&xtatc=PUB-%5Bggp%5D-%5BInformatique%5D-%5BAccessoires%5D-%5B2802988128%5D-%5Bneuf%5D-%5BCNYO%5D&ptnrid=s24llCvmK_dc|pcrid|53434268603|pkw||pmt|&ja2=tsid:67590|cid:285670043|agid:14467128323|tid:pla-89152206803|crid:53434268603|nw:g|rnd:18354825736995777509|dvc:c|adp:1o2)
 
-- RFID Tag
-
-- Plaque d'essai
+- [Plaque d'essai]()
 
 - Jumper Wire
 
@@ -32,7 +30,7 @@
 [(source]: www.memorandum.ovh/
 
 ## Introduction
-Nous avons voulu réaliser un prototype permettant d'identifier un utilisateur grâce à un module RFID et la technologie Arduino.
+Nous avons voulu réaliser un prototype permettant d'identifier un utilisateur grâce à un module RFID et la technologie Arduino. Le principe est que lorsque la personne présente sa carte sur le module, une LED lui indique si oui ou non il est authorisé  accédder à cette partie de l'établissement. Un écran LCD lui indiquera en plus si son accès est authorisé ou non.
 
 ## Phase de test
 
@@ -57,11 +55,31 @@ Nous avons donc directement connecté les cable sur la carte RFID plutôt que su
 
 ##Code
 
-###Initialisation des modules
-`Serial.begin(9600);
- SPI.begin();      
- mfrc522.PCD_Init();`
+###Librairies utilisé
 
+- [MFRC522](https://github.com/miguelbalboa/rfid)
+- [SPI](https://www.arduino.cc/en/Reference/SPI)
+
+###Initialisation des modules
+<pre><code> Serial.begin(9600);
+ SPI.begin();      
+ mfrc522.PCD_Init();
+</code></pre>
+
+###Vérification des accès
+```javascript
+	if (mfrc522.uid.uidByte[0] == 0x90 && 
+		mfrc522.uid.uidByte[1] == 0xA1 && 
+		mfrc522.uid.uidByte[2] == 0xDD && 
+		mfrc522.uid.uidByte[3] == 0x2B) {
+			Serial.println("Accés autorisé");
+			digitalWrite(LED, HIGH);
+			delay(3000);
+			digitalWrite(LED, LOW);
+	  } else {
+	    	Serial.println("Accés refusé");
+  	  }
+```
 ## Lien utiles
 
 - [Documentation Arduino](https://www.arduino.cc/) 
