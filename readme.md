@@ -61,10 +61,11 @@ Nous avons donc directement connecté les cable sur la carte RFID plutôt que su
 - [SPI](https://www.arduino.cc/en/Reference/SPI)
 
 ###Initialisation des modules
-<pre><code> Serial.begin(9600);
+```javascript 
+ Serial.begin(9600);
  SPI.begin();      
  mfrc522.PCD_Init();
-</code></pre>
+```
 
 ###Vérification des accès
 ```javascript
