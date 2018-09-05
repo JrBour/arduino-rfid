@@ -31,13 +31,16 @@
 
 [(source]: www.memorandum.ovh/
 
+## Introduction
+Nous avons voulu réaliser un prototype permettant d'identifier un utilisateur grâce à un module RFID et la technologie Arduino.
+
 ## Phase de test
 
 - [x] Installation de la librarie MFRC522
 - [x] Test détection de la carte MFRC522
 - [x] Récupération des informations depuis la carte
 - [ ] Test fonctionnement LED
-- [ ] Test écran lCD
+- [ ] Test écran LCD
 
 La librairie MDRC522 a été installée à partir d'un repo GitHub et ajoutée sur Arduino à partir de son menu.
 
@@ -52,6 +55,12 @@ Nous avons donc directement connecté les cable sur la carte RFID plutôt que su
 ![](https://trello-attachments.s3.amazonaws.com/5b8e517eb593be33b7eb2294/5b8e524997a4aa2d3219bbac/a7f94da2eda37267a42efa20394a4c00/test00.png)
 
 
+##Code
+
+###Initialisation des modules
+`Serial.begin(9600);
+ SPI.begin();      
+ mfrc522.PCD_Init();`
 
 ## Lien utiles
 

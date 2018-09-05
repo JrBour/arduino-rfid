@@ -23,7 +23,7 @@ void checkCard() {
 
   mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
 
-  if (mfrc522.uid.uidByte[0] == 0xA0 && mfrc522.uid.uidByte[1] == 0xD4 && mfrc522.uid.uidByte[2] == 0xE1 && mfrc522.uid.uidByte[3] == 0x2B) {
+  if (mfrc522.uid.uidByte[0] == 0x90 && mfrc522.uid.uidByte[1] == 0xA1 && mfrc522.uid.uidByte[2] == 0xDD && mfrc522.uid.uidByte[3] == 0x2B) {
     Serial.println("Accés autorisé");
     digitalWrite(LED, HIGH);
     delay(3000);
