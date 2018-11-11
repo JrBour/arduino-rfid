@@ -9,7 +9,7 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
 void setup() {
-  SPI.begin();      // Init SPI bus
+  SPI.begin();  
   Serial.begin(9600);   // Initialize serial communications with the PC
   pinMode(LED_GREEN, OUTPUT);
   pinMode(LED_RED, OUTPUT);
